@@ -1,0 +1,91 @@
+.
+├── data/
+│   ├── krm-v3.0.xlsx
+│   └── README.md
+├── docs/
+│   ├── fos.docx
+│   ├── grading-system.md
+│   ├── quality-checklist.md
+│   ├── README.md
+│   ├── rpd.docx
+│   └── rpd.md
+├── Exam/
+│   ├── attachments/
+│   │   ├── .gitkeep
+│   │   └── appendix-01-exam-tickets.pdf
+│   └── README.md
+├── M1-storage-models/
+│   ├── attachments/
+│   │   └── .gitkeep
+│   ├── kim-01-test.md
+│   ├── kim-02-lab-storage-design.md
+│   └── README.md
+├── M2-data-preparation/
+│   ├── attachments/
+│   │   ├── .gitkeep
+│   │   └── appendix-01-integration-etl-elt.pdf
+│   ├── kim-01-colloquium.md
+│   ├── kim-02-test.md
+│   ├── kim-03-lab-etl.md
+│   └── README.md
+├── M3-processing-technologies/
+│   ├── attachments/
+│   │   ├── .gitkeep
+│   │   ├── appendix-01-airflow-orchestration.pdf
+│   │   └── appendix-02-openmetadata-lineage-quality.pdf
+│   ├── kim-01-control-work.md
+│   ├── kim-02-lab-distributed-processing.md
+│   ├── kim-03-lab-airflow.md
+│   ├── kim-04-lab-openmetadata.md
+│   └── README.md
+├── M4-big-data-infrastructure/
+│   ├── attachments/
+│   │   └── .gitkeep
+│   ├── kim-01-test.md
+│   ├── kim-02-lab-infrastructure.md
+│   └── README.md
+├── methodical-guidelines/
+│   ├── students/
+│   │   └── README.md
+│   ├── teachers-assessment/
+│   │   └── README.md
+│   ├── teachers-resources/
+│   │   └── README.md
+│   └── README.md
+├── other/
+│   ├── presentation.pptx
+│   └── README.md
+├── Project/
+│   ├── attachments/
+│   │   └── .gitkeep
+│   └── README.md
+├── resources/
+│   ├── benchmarks/
+│   │   └── README.md
+│   ├── datasets/
+│   │   └── README.md
+│   ├── llm-prompts/
+│   │   └── README.md
+│   ├── other/
+│   │   └── README.md
+│   ├── papers/
+│   │   └── README.md
+│   ├── problem-banks/
+│   │   └── README.md
+│   ├── software/
+│   │   └── python-libs/
+│   │       └── README.md
+│   ├── test-banks/
+│   │   └── README.md
+│   ├── textbooks/
+│   │   └── README.md
+│   └── README.md
+├── team/
+│   ├── images/
+│   │   └── .gitkeep
+│   └── README.md
+├── .gitignore
+├── CONTRIBUTING.md
+├── LICENSE.md
+├── README.md
+└── repository-tree.txt
