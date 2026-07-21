@@ -2,4 +2,4 @@
 
 ## Методические указания преподавателю по проектной работе
 
-[Методические указания](/attachments/appendix-X-project_methodological_teacher.pdf).
+[Методические указания](attachments/appendix-X-project_methodological_teacher.pdf).
