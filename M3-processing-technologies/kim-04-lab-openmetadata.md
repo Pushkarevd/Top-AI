@@ -23,7 +23,7 @@
 
 ## Формулировка задания и исходные материалы
 
-Полный текст задания: [Задание 3.7. Data Lineage и Data Quality OpenMetadata](attachments/appendix-02-openmetadata-lineage-quality.pdf).
+Полный текст задания: [Задание 3.7. Data Lineage и Data Quality OpenMetadata](attachments/1.pdf).
 
 Этапы выполнения:
 
