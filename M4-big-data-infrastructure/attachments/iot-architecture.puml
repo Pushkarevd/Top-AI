@@ -1,0 +1,90 @@
+@startuml IoT Telemetry Infrastructure
+
+title Figure 2 - IoT Telemetry Infrastructure Architecture
+
+package "Data Sources" {
+  [IoT Sensors\n(10,000 devices)] as sensors
+  [Edge Gateways] as gateways
+}
+
+package "Ingestion Layer" {
+  [Apache Kafka\n(Cluster)] as kafka
+  [Kafka Streams] as kstreams
+  [MQTT Broker] as mqtt
+}
+
+package "Storage Layer" {
+  package "Time-Series Database" {
+    [InfluxDB] as influx
+    [TimescaleDB] as timescale
+  }
+  
+  package "Data Lake" {
+    [Raw Parquet Files] as raw
+    [Aggregated Data] as aggregated
+  }
+  
+  package "Hot Storage" {
+    [Redis TimeSeries] as redis
+  }
+}
+
+package "Processing Layer" {
+  [Stream Processing\n(Window Aggregations)] as stream_proc
+  [Anomaly Detection\n(ML Model)] as anomaly
+  [Batch Aggregation\n(Daily/Hourly)] as batch
+}
+
+package "Serving Layer" {
+  [Time-Series API] as ts_api
+  [Alerting Service] as alerts
+  [Dashboards\n(Grafana)] as dashboards
+  [Historical API] as history_api
+}
+
+' Data flow
+sensors --> mqtt : MQTT protocol (every 5s)
+gateways --> kafka : Batched telemetry
+mqtt --> kafka : Protocol bridge
+
+' Real-time processing
+kafka --> stream_proc : Raw telemetry stream
+stream_proc --> redis : Real-time aggregates (1min)
+stream_proc --> influx : Detailed data points
+stream_proc --> anomaly : Anomaly detection
+
+' Anomaly handling
+anomaly --> alerts : Trigger alerts
+anomaly --> kafka : Anomaly events
+
+' Storage strategy
+influx --> raw : Downsample to Parquet (daily)
+redis --> aggregated : Cache recent aggregates
+batch --> aggregated : Historical aggregates
+
+' Serving
+influx --> ts_api : Recent data queries
+timescale --> history_api : Historical queries
+redis --> dashboards : Real-time metrics
+aggregated --> dashboards : Historical trends
+ts_api --> dashboards : Custom queries
+
+note right: 
+  **Storage Strategy:**
+  - **Hot (Redis):** Last 24h, sub-second access
+  - **Warm (InfluxDB):** 30 days detailed
+  - **Cold (Data Lake):** 1+ year aggregated
+  
+  **Processing:**
+  - Window: 1min, 5min, 1h aggregations
+  - Anomaly: Statistical + ML-based
+end note
+
+legend right
+  |=Legend|=|
+  |<#32CD32> Real-time Flow</color>|
+  |<#4169E1> Batch Flow</color>|
+  |<#FF6347> Alert Flow</color>|
+endlegend
+
+@enduml

@@ -1,0 +1,97 @@
+@startuml Data Lake Storage Layers
+
+title Figure 3 - Multi-Layer Data Lake Architecture
+
+package "Bronze Layer (Raw)" {
+  [Raw JSON/CSV] as raw_json
+  [Raw Parquet] as raw_parquet
+  [Event Logs] as raw_events
+  
+  note right
+    **Characteristics:**
+    - Immutable original data
+    - Schema-on-read
+    - Retention: 7-30 days
+    - Format: JSON, CSV, Avro
+  end note
+}
+
+package "Silver Layer (Cleaned)" {
+  [Validated Records] as validated
+  [Deduplicated Data] as deduped
+  [Standardized Schema] as standardized
+  
+  note right
+    **Characteristics:**
+    - Cleaned & validated
+    - Consistent schema
+    - Deduplicated
+    - Format: Parquet, ORC
+  end note
+}
+
+package "Gold Layer (Curated)" {
+  [Business Aggregates] as aggregates
+  [Data Marts] as marts
+  [Feature Tables] as features
+  [ML Datasets] as ml_data
+  
+  note right
+    **Characteristics:**
+    - Business-ready
+    - Optimized for queries
+    - Documented lineage
+    - Format: Parquet, Delta
+  end note
+}
+
+package "Consumption" {
+  [Data Warehouse] as dw
+  [ML Platform] as ml
+  [BI Tools] as bi
+  [APIs] as api
+}
+
+' Bronze layer ingestion
+rectangle "Sources" as sources {
+  [Streaming\n(Kafka)] as kafka
+  [Batch\n(S3/SFTP)] as batch
+  [CDC\n(Debezium)] as cdc
+}
+
+kafka --> raw_json : Real-time events
+batch --> raw_parquet : File loads
+cdc --> raw_events : Change events
+
+' Bronze to Silver
+raw_json --> validated : Schema validation
+raw_parquet --> deduped : Deduplication
+raw_events --> standardized : Normalization
+
+validated --> deduped
+deduped --> standardized
+
+' Silver to Gold
+standardized --> aggregates : Business logic
+standardized --> marts : Domain marts
+standardized --> features : Feature engineering
+aggregates --> ml_data : Training datasets
+
+' Consumption
+marts --> dw : SQL analytics
+features --> ml : Model training
+aggregates --> bi : Dashboards
+ml_data --> api : ML predictions
+
+note bottom
+  **Data Quality Gates:**
+  - Bronze → Silver: Schema validation, null checks, format validation
+  - Silver → Gold: Business rules, referential integrity, completeness
+  
+  **Partitioning Strategy:**
+  - Bronze: By ingestion date (dt=YYYY-MM-DD)
+  - Silver: By event date + source
+  - Gold: By business dimension (region, product, etc.)
+end note
+
+@enduml
