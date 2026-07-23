@@ -6,19 +6,19 @@
 
 | Элемент | Оценочное средство | КИМ | Вес в итоговой оценке |
 | --- | --- | --- | :---: |
-| Модуль 1 | Тестирование | [КИМ-1.1](../M1-storage-models/kim-01-test.md) | [ЗАПОЛНИТЬ] |
-| Модуль 1 | Лабораторная работа | [КИМ-1.2](../M1-storage-models/kim-02-lab-storage-design.md) | [ЗАПОЛНИТЬ] |
-| Модуль 2 | Коллоквиум (устный опрос) | [КИМ-2.1](../M2-data-preparation/kim-01-colloquium.md) | [ЗАПОЛНИТЬ] |
-| Модуль 2 | Тестирование | [КИМ-2.2](../M2-data-preparation/kim-02-test.md) | [ЗАПОЛНИТЬ] |
-| Модуль 2 | Лабораторная работа | [КИМ-2.3](../M2-data-preparation/kim-03-lab-etl.md) | [ЗАПОЛНИТЬ] |
-| Модуль 3 | Контрольная работа | [КИМ-3.1](../M3-processing-technologies/kim-01-control-work.md) | [ЗАПОЛНИТЬ] |
-| Модуль 3 | Лабораторная работа | [КИМ-3.2](../M3-processing-technologies/kim-02-lab-distributed-processing.md) | [ЗАПОЛНИТЬ] |
-| Модуль 3 | Лабораторная работа | [КИМ-3.3](../M3-processing-technologies/kim-03-lab-airflow.md) | [ЗАПОЛНИТЬ] |
-| Модуль 3 | Лабораторная работа | [КИМ-3.4](../M3-processing-technologies/kim-04-lab-openmetadata.md) | [ЗАПОЛНИТЬ] |
-| Модуль 4 | Тестирование | [КИМ-4.1](../M4-big-data-infrastructure/kim-01-test.md) | [ЗАПОЛНИТЬ] |
-| Модуль 4 | Лабораторная работа | [КИМ-4.2](../M4-big-data-infrastructure/kim-02-lab-infrastructure.md) | [ЗАПОЛНИТЬ] |
-| Проектная работа | Защита итогового проекта | [Проект](../Project/README.md) | [ЗАПОЛНИТЬ] |
-| Экзамен | Устный ответ по билету | [Экзамен](../Exam/README.md) | [ЗАПОЛНИТЬ] |
+| Модуль 1 | Тестирование | [КИМ-1.1](../M1-storage-models/kim-01-test.md) | 5 |
+| Модуль 1 | Лабораторная работа | [КИМ-1.2](../M1-storage-models/kim-02-lab-storage-design.md) | 5 |
+| Модуль 2 | Коллоквиум (устный опрос) | [КИМ-2.1](../M2-data-preparation/kim-01-colloquium.md) | 5 |
+| Модуль 2 | Тестирование | [КИМ-2.2](../M2-data-preparation/kim-02-test.md) | 5 |
+| Модуль 2 | Лабораторная работа | [КИМ-2.3](../M2-data-preparation/kim-03-lab-etl.md) | 5 |
+| Модуль 3 | Контрольная работа | [КИМ-3.1](../M3-processing-technologies/kim-01-control-work.md) | 10 |
+| Модуль 3 | Лабораторная работа | [КИМ-3.2](../M3-processing-technologies/kim-02-lab-distributed-processing.md) | 5 |
+| Модуль 3 | Лабораторная работа | [КИМ-3.3](../M3-processing-technologies/kim-03-lab-airflow.md) | 5 |
+| Модуль 3 | Лабораторная работа | [КИМ-3.4](../M3-processing-technologies/kim-04-lab-openmetadata.md) | 5 |
+| Модуль 4 | Тестирование | [КИМ-4.1](../M4-big-data-infrastructure/kim-01-test.md) | 5 |
+| Модуль 4 | Лабораторная работа | [КИМ-4.2](../M4-big-data-infrastructure/kim-02-lab-infrastructure.md) | 5 |
+| Проектная работа | Защита итогового проекта | [Проект](../Project/README.md) | 20 |
+| Экзамен | Устный ответ по билету | [Экзамен](../Exam/README.md) | 20 |
 
 Сумма весов должна составлять 100 %.
 
