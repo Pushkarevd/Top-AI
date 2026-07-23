@@ -1,0 +1,97 @@
+@startuml E-Commerce Analytics Infrastructure
+
+title Figure 1 - E-Commerce Analytics Infrastructure Architecture
+
+package "Data Sources" {
+  [Web Server Logs] as logs
+  [Clickstream Events] as clicks
+  [Transactions DB] as transactions
+  [CRM System] as crm
+  [External APIs] as external
+}
+
+package "Ingestion Layer" {
+  [Apache Kafka] as kafka
+  [Kafka Connect] as connect
+  [REST API Gateway] as api
+}
+
+package "Storage Layer" {
+  package "Data Lake (S3/HDFS)" {
+    [Raw Zone] as raw
+    [Cleaned Zone] as cleaned
+    [Curated Zone] as curated
+  }
+  
+  package "Data Warehouse" {
+    [ClickHouse] as warehouse
+  }
+  
+  package "Cache Layer" {
+    [Redis] as redis
+  }
+}
+
+package "Processing Layer" {
+  [Apache Spark Streaming] as streaming
+  [Apache Spark Batch] as batch
+  [Apache Flink] as flink
+}
+
+package "Orchestration" {
+  [Apache Airflow] as airflow
+}
+
+package "Serving Layer" {
+  [SQL Interface\n(Presto/Trino)] as sql
+  [REST API] as serving_api
+  [Dashboards\n(Grafana/Superset)] as dashboards
+}
+
+' Data flows from sources
+logs --> api : HTTP/JSON
+clicks --> kafka : Real-time stream
+transactions --> connect : CDC
+crm --> connect : Batch sync
+external --> api : REST
+
+' Ingestion to storage
+api --> raw : Raw JSON/Parquet
+kafka --> raw : Stream data
+connect --> raw : Batch loads
+
+' Storage layers
+raw --> cleaned : ETL jobs
+cleaned --> curated : Aggregation
+cleaned --> warehouse : Structured load
+curated --> warehouse : Final marts
+
+' Processing
+kafka --> streaming : Real-time
+kafka --> flink : Complex events
+raw --> batch : Daily jobs
+batch --> cleaned : Transform
+streaming --> redis : Real-time aggregates
+flink --> warehouse : Anomaly detection
+
+' Orchestration
+airflow --> batch : Schedule
+airflow --> connect : Sync jobs
+airflow --> warehouse : ETL pipelines
+
+' Serving
+warehouse --> sql : SQL queries
+warehouse --> dashboards : Visualizations
+redis --> serving_api : Low-latency API
+curated --> serving_api : Business data
+
+note bottom: 
+  **Data Flow:**
+  1. Raw ingestion → Data Lake (Raw Zone)
+  2. Cleaning & validation → Cleaned Zone
+  3. Business logic & aggregates → Curated Zone
+  4. Structured analytics → Data Warehouse
+  5. Real-time serving → Cache + API
+end note
+
+@enduml
