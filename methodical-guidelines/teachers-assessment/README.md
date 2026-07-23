@@ -2,4 +2,8 @@
 
 ## Методические указания преподавателю по проектной работе
 
-[Методические указания](attachments/appendix-X-project_methodological_teacher.pdf).
+[Методические указания по проектной работе](attachments/appendix-X-project_methodological_teacher.pdf).
+
+## Методические указания преподавателю по контрольной работе Модуля 3
+
+[Методические указания по контрольной работе](attachments/appendix-01-control-work_metod_teacher_M3.pdf).
