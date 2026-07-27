@@ -2,8 +2,7 @@
 
 ## Методические указания преподавателю по проектной работе
 
-[Методические указания по проектной работе](methodical-guidelines/teachers-assessment/methodical-teachers-project-work.md)
-
+[Методические указания по проектной работе](/teachers-assessment/methodical-teachers-project-work.md)
 
 ## Методические указания преподавателю по контрольной работе Модуля 3
 
