@@ -122,4 +122,4 @@
 5.	Непрерывная интеграция и доставка для данных – настроить автоматическое тестирование и развертывание конвейеров.
 6.	Оркестрация в Kubernetes – вместо Docker Compose использовать Kubernetes.
 
-[Методическиу указания в формате .pdf](attachments/appendix-X-project_methodological_teacher.pdf).
+[Методические указания в формате .pdf](attachments/appendix-X-project_methodological_teacher.pdf).
