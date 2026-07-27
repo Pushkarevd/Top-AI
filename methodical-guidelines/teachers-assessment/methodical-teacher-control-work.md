@@ -374,93 +374,93 @@ ________________________________________
 
 Ожидаемый ответ:
 
-import pandas as pd
-from datetime import datetime
-def dq_report(df, required_columns=None, id_columns=None):
-    """
-    Генерация отчета о качестве данных.
-    Parameters:
-    - df: pandas DataFrame
-    - required_columns: список обязательных колонок
-    - id_columns: список колонок-идентификаторов для проверки уникальности
-    
-    Returns:
-    - dict с метриками качества
-    """
-    report = {}
-    total_rows = len(df)
-    report['total_rows'] = total_rows
-    
-    1. Проверка полноты (Completeness)
-    if required_columns:
-        completeness = {}
-        for col in required_columns:
-            null_count = df[col].isnull().sum()
-            completeness[col] = {
-                'null_count': null_count,
-                'null_percentage': round(null_count / total_rows * 100, 2),
-                'is_valid': null_count == 0
-            }
-        report['completeness'] = completeness
-    
-    2. Проверка уникальности (Uniqueness)
-    if id_columns:
-        duplicate_count = df.duplicated(subset=id_columns).sum()
-        report['uniqueness'] = {
-            'duplicate_count': duplicate_count,
-            'duplicate_percentage': round(duplicate_count / total_rows * 100, 2),
-            'is_valid': duplicate_count == 0
-        }
-    
-    3. Проверка допустимых значений (Validity) для числовых колонок
-    numeric_metrics = {}
-    for col in df.select_dtypes(include=['number']).columns:
-        numeric_metrics[col] = {
-            'min': df[col].min(),
-            'max': df[col].max(),
-            'mean': round(df[col].mean(), 2),
-            'std': round(df[col].std(), 2),
-            'null_count': df[col].isnull().sum()
-        }
-    report['numeric_metrics'] = numeric_metrics
-    
-    4. Проверка на выбросы (Outliers) по IQR
-    outliers = {}
-    for col in df.select_dtypes(include=['number']).columns:
-        Q1 = df[col].quantile(0.25)
-        Q3 = df[col].quantile(0.75)
-        IQR = Q3 - Q1
-        lower_bound = Q1 - 1.5 * IQR
-        upper_bound = Q3 + 1.5 * IQR
-        outliers[col] = {
-            'lower_bound': lower_bound,
-            'upper_bound': upper_bound,
-            'outliers_count': ((df[col] < lower_bound) | (df[col] > upper_bound)).sum()
-        }
-    report['outliers'] = outliers
-    
-    5. Общий статус качества
-    is_valid = True
-    if 'completeness' in report:
-        for col, metrics in report['completeness'].items():
-            if not metrics['is_valid']:
-                is_valid = False
-    if 'uniqueness' in report:
-        if not report['uniqueness']['is_valid']:
-            is_valid = False
-    
-    report['overall_status'] = 'PASS' if is_valid else 'FAIL'
-    report['generated_at'] = datetime.now().isoformat()
-    
-    return report
-Пример использования
-df = pd.read_csv('processed_logs.csv')
-report = dq_report(
-    df, 
-    required_columns=['user_id', 'timestamp', 'page_url'],
-    id_columns=['user_id', 'timestamp']
-)
-print(report['overall_status'])
+         import pandas as pd
+         from datetime import datetime
+         def dq_report(df, required_columns=None, id_columns=None):
+             """
+             Генерация отчета о качестве данных.
+             Parameters:
+             - df: pandas DataFrame
+             - required_columns: список обязательных колонок
+             - id_columns: список колонок-идентификаторов для проверки уникальности
+             
+             Returns:
+             - dict с метриками качества
+             """
+             report = {}
+             total_rows = len(df)
+             report['total_rows'] = total_rows
+             
+             1. Проверка полноты (Completeness)
+             if required_columns:
+                 completeness = {}
+                 for col in required_columns:
+                     null_count = df[col].isnull().sum()
+                     completeness[col] = {
+                         'null_count': null_count,
+                         'null_percentage': round(null_count / total_rows * 100, 2),
+                         'is_valid': null_count == 0
+                     }
+                 report['completeness'] = completeness
+             
+             2. Проверка уникальности (Uniqueness)
+             if id_columns:
+                 duplicate_count = df.duplicated(subset=id_columns).sum()
+                 report['uniqueness'] = {
+                     'duplicate_count': duplicate_count,
+                     'duplicate_percentage': round(duplicate_count / total_rows * 100, 2),
+                     'is_valid': duplicate_count == 0
+                 }
+             
+             3. Проверка допустимых значений (Validity) для числовых колонок
+             numeric_metrics = {}
+             for col in df.select_dtypes(include=['number']).columns:
+                 numeric_metrics[col] = {
+                     'min': df[col].min(),
+                     'max': df[col].max(),
+                     'mean': round(df[col].mean(), 2),
+                     'std': round(df[col].std(), 2),
+                     'null_count': df[col].isnull().sum()
+                 }
+             report['numeric_metrics'] = numeric_metrics
+             
+             4. Проверка на выбросы (Outliers) по IQR
+             outliers = {}
+             for col in df.select_dtypes(include=['number']).columns:
+                 Q1 = df[col].quantile(0.25)
+                 Q3 = df[col].quantile(0.75)
+                 IQR = Q3 - Q1
+                 lower_bound = Q1 - 1.5 * IQR
+                 upper_bound = Q3 + 1.5 * IQR
+                 outliers[col] = {
+                     'lower_bound': lower_bound,
+                     'upper_bound': upper_bound,
+                     'outliers_count': ((df[col] < lower_bound) | (df[col] > upper_bound)).sum()
+                 }
+             report['outliers'] = outliers
+             
+             5. Общий статус качества
+             is_valid = True
+             if 'completeness' in report:
+                 for col, metrics in report['completeness'].items():
+                     if not metrics['is_valid']:
+                         is_valid = False
+             if 'uniqueness' in report:
+                 if not report['uniqueness']['is_valid']:
+                     is_valid = False
+             
+             report['overall_status'] = 'PASS' if is_valid else 'FAIL'
+             report['generated_at'] = datetime.now().isoformat()
+             
+             return report
+         Пример использования
+         df = pd.read_csv('processed_logs.csv')
+         report = dq_report(
+             df, 
+             required_columns=['user_id', 'timestamp', 'page_url'],
+             id_columns=['user_id', 'timestamp']
+         )
+         print(report['overall_status'])
 
 ________________________________________
 
@@ -488,12 +488,12 @@ ________________________________________
    - нарушений лучших практик написания кода. (1 балл)
 
 
-from pyspark.sql import functions as F
-def clean_data(df):
-    df = df.dropDuplicates(["user_id"])
-    df = df.filter(F.col("price") < 100000)
-    df = df.withColumn("year", F.col("year").cast("int"))
-    return df
+         from pyspark.sql import functions as F
+         def clean_data(df):
+             df = df.dropDuplicates(["user_id"])
+             df = df.filter(F.col("price") < 100000)
+             df = df.withColumn("year", F.col("year").cast("int"))
+             return df
 
 
    - **B. Получите ответ от искусственного интеллекта, зафиксируйте его в отчете. На основе полученных рекомендаций исправьте код и приложите исправленную версию с комментариями, поясняющими внесенные изменения. (2 балла)
