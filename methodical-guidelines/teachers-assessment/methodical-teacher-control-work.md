@@ -15,10 +15,10 @@
 **Вопрос 1. Компетенция BD-4.1.** Основы распределенной обработки (1 балл)
 
 Какая технология используется для распределенной обработки больших данных?
-    * A. Microsoft Excel
-    * B. Apache Spark
-    * C. SQL Server Management Studio
-    * D. Google Sheets
+   - A. Microsoft Excel
+   - B. Apache Spark
+   - C. SQL Server Management Studio
+   - D. Google Sheets
 
 Правильный ответ: B
 
