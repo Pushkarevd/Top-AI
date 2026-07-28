@@ -6,4 +6,4 @@
 
 | Файл | Назначение | Автор / источник | Лицензия |
 | --- | --- | --- | --- |
-| [presentation.pptx](presentation.pptx) | Презентация проекта ФОС (группа 50) | Команда проекта, см. [team](../team/README.md) | [ЗАПОЛНИТЬ] |
+| [presentation.pptx](presentation.pptx) | Презентация проекта ФОС (группа 50) | Команда проекта, см. [team](../team/README.md) | [CC BY 4.0] |
