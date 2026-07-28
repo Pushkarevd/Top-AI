@@ -391,12 +391,6 @@ hadoop.env (конфигурация Hadoop)
 Анализ данных об автомобилях (PySpark)
         
         python
-        # ============================================================
-        # Бейзлайн: Анализ данных об автомобилях на рынке США
-        # Проектная работа
-        # Компетенция: BD-2.2 (Уровень С)
-        # ============================================================
-        
         from pyspark.sql import SparkSession
         from pyspark.sql import functions as F
         from pyspark.sql.types import IntegerType, DoubleType, BooleanType
